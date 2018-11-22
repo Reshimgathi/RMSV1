@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReshimgathiMatrimonyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AppConstants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Constant" Type="varchar" MaxLength="255" />
+    <Property Name="Value" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="255" />
+    <Property Name="Password" Type="varchar" MaxLength="255" />
+    <Property Name="UserType" Type="bit" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LoginEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LoginId" Type="varchar" MaxLength="255" />
+    <Property Name="LastLoginDate" Type="varchar" MaxLength="255" />
+    <Property Name="FailedAttempts" Type="bit" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="255" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RegistrationPhase1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LoginId" Type="uniqueidentifier" />
+    <Property Name="ReshimgathiId" Type="varchar" MaxLength="255" />
+    <Property Name="FirstName" Type="varchar" MaxLength="255" />
+    <Property Name="LastName" Type="varchar" MaxLength="255" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="25" />
+    <Property Name="IsPhoneVerified" Type="bit" />
+    <Property Name="EmailId" Type="varchar" MaxLength="255" />
+    <Property Name="IsEmailVerified" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <Function Name="GetLoginDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="UserType" Type="bit" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetLoginDetailsProc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="input" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ReshimgathiMatrimonyModelStoreContainer">
+    <EntitySet Name="AppConstants" EntityType="Self.AppConstants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginEvents" EntityType="Self.LoginEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistrationPhase1" EntityType="Self.RegistrationPhase1" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
