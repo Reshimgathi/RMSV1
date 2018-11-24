@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace ReshimgathiMatrimony.Controllers
 {
+    /// <summary>
+    /// LoginController
+    /// </summary>
     public class LoginController : Controller
     {
         public ActionResult Index()
